@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+</head>
+
+<body>
+    <h1>Mandar mensajes - Pre-especialidad UTEC</h1>
+    <h2>Joshua Herrera - 25-0061-2015</h2>
+
+    <form onsubmit="enviar(event)">
+        <label forHtml="tn">Ingrese Numero telefonico a que desea enviar mensaje de texto</label>
+        <br />
+        <input type="text" id="tn" name="tn" placeholder="+503000000" />
+        <br />
+        <label forHtml="msg">Ingrese su mensaje</label>
+        <br />
+        <input type="text" id="msg" name="msg" placeholder="Mensaje" />
+        <br />
+        <input type="Submit" value="Enviar" />
+    </form>
+
+    <script>
+        function enviar(event) {
+            fetch('http://localhost:3000/',{
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    tn: event.target.elements.tn.value,
+                    msg: event.target.elements.msg.value
+                })
+            })
+            alert("Mensaje enviado");
+        }
+    </script>
+</body>
+
+</html>
